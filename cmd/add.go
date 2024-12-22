@@ -25,7 +25,6 @@ func Add() {
         switch arg {
             case "-t":
                 target = utils.ValidateArgOpt(commandArgs, i)
-                fmt.Println("target", target)
             case "-c":
                 err := clipboard.Init()
                 if err != nil {
@@ -34,10 +33,8 @@ func Add() {
 
                 cBytes := clipboard.Read(clipboard.FmtText)
                 clipTarget = string(cBytes[:])
-                fmt.Println("clipboard")
             case "-g":
                 group = utils.ValidateArgOpt(commandArgs, i)
-                fmt.Println("group", group)
             case "-s":
                 shortcut = utils.ValidateArgOpt(commandArgs, i)
                 fmt.Println("shortcut", shortcut)
@@ -58,7 +55,7 @@ func Add() {
 
     groupPath := utils.RootPath() + "/" + group
 
-    err := os.MkdirAll(groupPath, os.ModePerm)
+    err := os.MkdirAll(groupPath, 0775)
     if err != nil {
         fmt.Println("Failed to create group directory")
         return
@@ -81,6 +78,12 @@ func Add() {
     }
 
     defer file.Close()
+
+    err = os.Chmod(targetPath, 0664)
+    if err != nil {
+        fmt.Println("Failed to set file permissions:", err)
+        return
+    }
 
     encoder := json.NewEncoder(file)
     encoder.Encode(bookmark)

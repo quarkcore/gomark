@@ -28,7 +28,7 @@ func RootPath() string {
 }
 
 func TriggerFzf(rootPath string, pattern string) (error, string) {
-    cmd := exec.Command("fzf", "--query", pattern)
+    cmd := exec.Command("fzf", "--select-1", "--exit-0", "--query="+pattern)
 
     cmd.Dir = rootPath
 
@@ -39,7 +39,10 @@ func TriggerFzf(rootPath string, pattern string) (error, string) {
 
     err := cmd.Run()
     if err != nil {
+        fmt.Println("Error running fzf")
         fmt.Println(err)
+
+        return err, ""
     }
 
     outStr := out.String()

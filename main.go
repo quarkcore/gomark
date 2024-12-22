@@ -7,8 +7,6 @@ import (
 )
 
 func main() {
-    fmt.Println(os.Args)
-
     if len(os.Args) < 2 {
         fmt.Println("Usage: gomark [command] [args]")
         os.Exit(1)
