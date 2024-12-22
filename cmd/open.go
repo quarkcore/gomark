@@ -51,9 +51,13 @@ func findBookmark(pattern string) {
 func Open() {
     args := os.Args[2:]
 
-    if len(args) != 1 {
+    if len(args) > 1 {
         fmt.Println("Invalid number of arguments gomark open <bookmark-pattern>")
         return
+    }
+
+    if len(args) == 0 {
+        args = append(args, "")
     }
 
     findBookmark(args[0])
