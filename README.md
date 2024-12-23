@@ -8,6 +8,10 @@ With Gomark, you can effortlessly add, search, and open your bookmarks directly 
 
 Fzf: https://github.com/junegunn/fzf
 
+## INSTALLATION
+
+TBD
+
 ## USAGE
 ### Add a bookmark
 
