@@ -5,3 +5,10 @@
 SCHAT JIPTI AND PERPLEXSHITTY ARE NOTA BLE TO GNE MARKDOWN
 
 WANT WRITE CODE NOT READMES..
+
+# TROUBLEHSOOT
+
+On Macos: either sell your mac and get a linux box or resign the binary after build:
+```
+codesign -f -s - /Users/<username>/go/bin/gomark
+```
